@@ -22,7 +22,7 @@ from tkinter import filedialog, messagebox
 class VirusTotal():
 	def __init__(self):
 		self.reportfile = 'https://www.virustotal.com/vtapi/v2/file/report'
-		self.proxy = {'http':'http://www.example.com:80'}	# Insert proxy here i.e. (Optional)
+		self.proxy = {'http':'http://www.example.com:80'}	# Insert proxy here (Optional)
 	
 	
 	def read_apikey(self):
