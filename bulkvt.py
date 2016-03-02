@@ -43,7 +43,7 @@ class VirusTotal():
 	
 	def format_list(self, filepath):
 		parameters = {}
-		str_list = []
+		list = []
 		
 		with open(filepath, 'r') as file:
 			
@@ -51,14 +51,17 @@ class VirusTotal():
 				reader = csv.reader(file)
 				
 				for row in reader:
-					x = ', '.join(row)
-					str_list.append(x)
+					x = '\n'.join(row)
+					
+					for line in x.splitlines():
+						if self.is_hash(line):
+							list.append(line)
 						
 			elif filepath.endswith('.txt') or filepath.endswith('.log'):
 				for line in file.readlines():
-					str_list.append(line.strip())
+					list.append(line.strip())
 				
-		values = ', '.join(str(i) for i in str_list)
+		values = ', '.join(str(i) for i in list)
 		
 		parameters['resource'] = values
 		parameters['apikey'] = self.apikey
@@ -389,7 +392,7 @@ class App(VirusTotal):
 			pass
 		
 		if not self.has_apikey():
-			messagebox.showerror(message='You will need your own API key.\nTo enter an API key, click on the menu File > API Key')
+			messagebox.showerror(message='You need an API key.\nClick on the menu File > API Key to insert your API Key.')
 		#elif not self.output_entry.get():
 			#messagebox.showinfo(message='You must select an output path!')
 		#elif not self.input_entry.get():
