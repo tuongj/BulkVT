@@ -9,7 +9,7 @@
 
 __author__ = 'Jimmy Tuong'
 __license__ = 'MIT'
-__version__ = '1.0'
+__version__ = '1.1'
 __email__ = 'tuongj@gmail.com'
 
 import urllib.request, urllib.parse
@@ -142,7 +142,7 @@ class VirusTotal():
 		
 			elif output.endswith('.txt') or output.endswith('.log'):
 				f.write(','.join(header))
-				f.write('\n')
+				f.write('\r\n')
 				
 				for item in response:
 					
@@ -153,12 +153,12 @@ class VirusTotal():
 						joinitem = ','.join(str(i) for i in list)
 							
 						f.write(joinitem)
-						f.write('\n')
+						f.write('\r\n')
 						
 						list[:] = []
 		
-					else:
-						error = ' '.join([item['resource'], 'not found. The file you are looking for is not in the database.\n'])
+					else:			
+						error = ' '.join([item['resource'], 'not found. The file you are looking for is not in the database.\r\n'])
 						f.write(error)
 	
 	
