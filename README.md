@@ -1,5 +1,5 @@
 # BulkVT
-A GUI-based tool to retrieve preexisting scans of hashes or files from VirusTotal. BulkVT accepts single or in bulk of hashes or files.
+A GUI-based tool to retrieve preexisting scans of hashes or files from VirusTotal. BulkVT accepts single or hashes in large batches.
 
-# Requirement
-- An API Key from VirusTotal - https://www.virustotal.com
+# Prerequisite
+- An API key from VirusTotal. Register at https://www.virustotal.com to receive an API key for free.
