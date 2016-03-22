@@ -9,7 +9,7 @@
 
 __author__ = "Jimmy Tuong"
 __license__ = "MIT"
-__version__ = "1.1"
+__version__ = "1.2"
 __email__ = "tuongj@gmail.com"
 
 import urllib.request, urllib.parse
@@ -22,7 +22,7 @@ from tkinter import filedialog, messagebox
 class VirusTotal():
 	def __init__(self):
 		self.reportfile = "https://www.virustotal.com/vtapi/v2/file/report"
-		self.reporturl = "http://www.virustotal.com/vtapi/v2/url/report"
+		self.reporturl = "https://www.virustotal.com/vtapi/v2/url/report"
 
 		# To be implemented in the future
 		# self.reportdomain = "http://www.virustotal.com/vtapi/v2/domain/report"
@@ -110,20 +110,18 @@ class VirusTotal():
 		return items
 		
 	def scan_lookup(self, parameters):
-		
+		hash_status = False
+		url_status = False
+
 		proxy_handler = urllib.request.ProxyHandler(self.proxy)
 		opener = urllib.request.build_opener(proxy_handler)
 		urllib.request.install_opener(opener)
-		
-		hash_status = False
-		url_status = False
 		
 		if "hash" in parameters:
 			if "resource" in parameters:
 				del parameters["resource"]
 
 			parameters["resource"] = parameters.pop("hash")
-			
 			hash_data = urllib.parse.urlencode(parameters)
 			hash_data = hash_data.encode("ascii")
 		
@@ -312,7 +310,7 @@ class VirusTotal():
 		match_obj2 = re.match("((xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}", parsed[1])
 		match_obj3 = re.match('\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}', parsed[1])
 
-		if match_obj2 or (match_obj3 and len(parsed[2]) > 1):
+		if match_obj2 or match_obj3:
 			return True
 		else:
 			return False
